@@ -1,0 +1,38 @@
+header {
+    height: 60px;
+    width: 100%;
+    background-color: var(--neutral-lighter);
+}
+
+.map-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    overflow: hidden;
+}
+
+.map-img {
+    width: 100%;
+    display: block;
+}
+
+.marker {
+    position: absolute;
+    /*transform: translate(-50%, -100%);*/
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.marker img {
+    width: 30px;
+}
+
+.marker:hover {
+    scale: 1.2;
+
+}
