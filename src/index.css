@@ -1,7 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Londrina+Shadow&display=swap');
+
+.roboto-normal {
+    font-family: "Rubik Spray Paint", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.finger-paint-regular {
+    font-family: "Finger Paint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 :root {
 
+    --main-bg: #e0eef2;
     --white: #ffffff;
     --black: #000000;
+    --dark-gray: #262627;
 
     --neutral-dark: #091D2E;
     --neutral-darker: #203243;
@@ -17,7 +35,7 @@
 
     --primary-dark: #00210C;
     --primary-darker: #005228;
-    --primary-normal: #2ECC71;
+    --primary-normal: #007038;
     --primary-light: #1FC46A;
     --primary-lighter: #C3FFCD;
 
@@ -26,14 +44,30 @@
     --yellow-normal: #F1C40F;
     --yellow-light: #FFE084;
     --yellow-lighter: #FFF0CA;
+
+    --error-color: #cb1234;
+
+    --bos-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+
+
+    --deff-radius: 10px
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: "Istok Web", sans-serif;
     box-sizing: border-box;
+
+    font-family: "Roboto", sans-serif;
 }
+
+h1.title {
+    font-size: 36px;
+    font-family: "Finger Paint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 
 body, html {
     width: 100%;
@@ -42,10 +76,10 @@ body, html {
 }
 
 body {
-    background-color: var(--neutral-dark);
+    background-color: var(--dark-gray);
 }
 
-#root{
+#root {
     min-height: 100%;
     height: 100%;
 }
@@ -54,6 +88,69 @@ body {
     width: 100%;
     max-width: 417px;
     margin: 0 auto;
-    background-color: var(--neutral-light);
+    background-color: var(--main-bg);
     min-height: 100%;
+    position: relative;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+
+/*Inputs*/
+.input-row {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-row label {
+    color: var(--neutral-normal);
+}
+
+.input-row input,
+.input-row select {
+    padding: 10px 15px;
+    width: 100%;
+    background-color: var(--white);
+    border: solid 1px var(--neutral-light);
+    border-radius: 5px;
+    outline: none;
+    transition: all .3s;
+
+    &:focus {
+        background-color: var(--neutral-lighter);
+    }
+}
+
+.input-row select,
+select {
+    appearance: none;
+    background-image: url("./assets/icons/chevron-down.svg");
+    background-repeat: no-repeat;
+    padding-right: 25px;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.link {
+    font-size: 16px;
+    color: var(--secontary-normal);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/*Flex*/
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
 }
