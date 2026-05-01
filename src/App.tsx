@@ -14,7 +14,6 @@ import {ProfilePage} from "@/pages/profile.page";
 function App() {
 
 
-
     return (
         <div className="wrapper">
             <Header/>

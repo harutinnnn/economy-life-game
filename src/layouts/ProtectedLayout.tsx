@@ -1,9 +1,11 @@
-import {Outlet} from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getNotifications, NotificationsResponse} from "@/api/notifications.api";
 import {socket, reconnectSocketWithFreshToken} from "@/socket";
 import {useAuth} from "@/hooks/useAuth";
 import {FooterTabNav} from "@/components/partial/FooterTabNav";
+import {TabNavEnums} from "@/enums/TabNavEnums";
+import {getUrlPart} from "@/utils/url.helper";
 
 export type ProtectedLayoutContext = {
     socket: typeof socket;
@@ -20,6 +22,9 @@ export default function ProtectedLayout() {
         setNotifications(notifications as NotificationsResponse[]);
     }
 
+    const location = useLocation();
+
+    const pageUrl: string = getUrlPart(location.pathname, 0)
 
     useEffect(() => {
         (async () => {
@@ -50,7 +55,7 @@ export default function ProtectedLayout() {
     return (
         <>
             <Outlet context={{socket}}/>
-            <FooterTabNav/>
+            <FooterTabNav activeTabArg={pageUrl}/>
         </>
     );
 }

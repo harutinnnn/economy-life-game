@@ -1,16 +1,27 @@
 import {BriefcaseBusiness, ChartBarBig, Globe, Store, UserRound} from "lucide-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {TabNavEnums} from "@/enums/TabNavEnums";
+import {useNavigate} from "react-router-dom";
 
-export const FooterTabNav = () => {
+export const FooterTabNav = ({activeTabArg}: { activeTabArg: string }) => {
 
-    const [activeTab, setActiveTab] = useState<TabNavEnums>(TabNavEnums.WORLD);
+    const [activeTab, setActiveTab] = useState<string>(TabNavEnums.WORLD);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setActiveTab(activeTabArg.length ? activeTabArg : TabNavEnums.WORLD);
+    }, [activeTabArg])
 
     return (
         <div className={"footer-tab-nav"}>
 
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.WORLD ? "active" : "")}
-                 onClick={() => setActiveTab(TabNavEnums.WORLD)}>
+
+                 onClick={() => {
+                     navigate('/')
+                     setActiveTab(TabNavEnums.WORLD)
+                 }
+                 }>
                 <Globe size={32}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.STATS ? "active" : "")}
@@ -26,7 +37,11 @@ export const FooterTabNav = () => {
                 <Store size={32}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.PROFILE ? "active" : "")}
-                 onClick={() => setActiveTab(TabNavEnums.PROFILE)}>
+                 onClick={() => {
+                     navigate('/profile')
+                     setActiveTab(TabNavEnums.PROFILE)
+                 }
+                 }>
                 <UserRound size={32}/>
             </div>
 
