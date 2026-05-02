@@ -6,7 +6,7 @@
 
     &:after {
         content: "";
-        background-image: url("/public/images/main-page-bg.png");
+        background-image: url("/images/main-page-bg.png");
         background-repeat: no-repeat;
         position: absolute;
         inset: 0;

@@ -20,6 +20,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const logout = () => {
+        clearAuthStorage();
+        setUser(null);
+    };
+
     useEffect(() => {
         async function restoreSession() {
             try {
@@ -64,11 +69,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setAuthTokens({ accessToken: token });
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
-    };
-
-    const logout = () => {
-        clearAuthStorage();
-        setUser(null);
     };
 
     const value = useMemo(() => ({ user, loading, login, logout }), [user, loading]);

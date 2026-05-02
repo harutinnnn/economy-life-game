@@ -12,7 +12,7 @@ export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) =
 
     const {login} = useAuth();
 
-    const [error, setError] = useState("");
+    const [, setError] = useState("");
 
     const navigate = useNavigate();
 

@@ -1,17 +1,20 @@
 header {
-    height: 60px;
-    gap: 10px;
+    height: 110px;
     width: 100%;
     background-color: var(--secontary-darker);
     color: var(--white);
-    padding: 0 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
     z-index: 999;
     position: sticky;
     top: 0;
+}
+
+header > div.header-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    padding: 0 10px;
 }
 
 header .logo {
@@ -19,15 +22,84 @@ header .logo {
     height: 40px;
 }
 
+.header-user-info {
+    background-color: var(--neutral-dark);
+    padding: 0 10px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-user-info .money-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.header-user-info .money-info img {
+    height: 30px;
+}
+
+.header-user-info .money-info img.add-icon {
+    height: 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        scale: 1.2;
+    }
+}
+
+.header-user-info .money-info > span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.notifications-info {
+    margin-left: auto;
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        scale: 1.2;
+    }
+}
+
+.notifications-info img {
+    height: 30px;
+
+}
+
+.notifications-info .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    min-width: 20px;
+    height: 20px;
+    background-color: var(--error-color);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 10px;
+}
+
 .auth-actions {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10px;
     margin-left: auto;
 }
 
 .auth-actions .auth-btn {
-    height: 40px;
+    height: 30px;
     cursor: pointer;
     transition: scale 0.3s;
 
@@ -98,6 +170,7 @@ header .logo {
 
 .marker img {
     width: 30px;
+    pointer-events: none;
 }
 
 .marker:hover {
@@ -208,10 +281,11 @@ header .logo {
     margin-top: 30px !important;
 }
 
-.p-t-1{
+.p-t-1 {
     margin-top: 10px !important;
 }
-.p-t-2{
+
+.p-t-2 {
     margin-top: 20px !important;
 }
 

@@ -99,8 +99,8 @@ api.interceptors.response.use(
             } catch (err) {
                 processQueue(err, null);
                 clearAuthStorage();
-                if (window.location.pathname !== "/login") {
-                    window.location.href = "/login";
+                if (window.location.pathname !== "/auth") {
+                    window.location.href = "/auth";
                 }
                 return Promise.reject(err);
             } finally {

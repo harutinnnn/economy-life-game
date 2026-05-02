@@ -1,13 +1,4 @@
-import {useAuth} from "@/hooks/useAuth";
-
-
 export const UserProfileComponent = () => {
-
-    const {user, login} = useAuth();
-
-
-
-
 
     return (
         <div className={""}>

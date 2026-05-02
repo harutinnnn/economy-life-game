@@ -16,7 +16,7 @@ export const AuthPage = () => {
         if (user) {
             navigate("/");
         }
-    }, [user]);
+    }, [user, navigate]);
 
     const checkTypeAndSetCOmponent = (type: string) => {
         switch (type) {

@@ -1,16 +1,12 @@
 import {BriefcaseBusiness, ChartBarBig, Globe, Store, UserRound} from "lucide-react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {TabNavEnums} from "@/enums/TabNavEnums";
 import {useNavigate} from "react-router-dom";
 
 export const FooterTabNav = ({activeTabArg}: { activeTabArg: string }) => {
 
-    const [activeTab, setActiveTab] = useState<string>(TabNavEnums.WORLD);
+    const [activeTab, setActiveTab] = useState<string>(activeTabArg.length ? activeTabArg : TabNavEnums.WORLD);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        setActiveTab(activeTabArg.length ? activeTabArg : TabNavEnums.WORLD);
-    }, [activeTabArg])
 
     return (
         <div className={"footer-tab-nav"}>

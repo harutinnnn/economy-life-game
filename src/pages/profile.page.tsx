@@ -3,49 +3,20 @@ import '../styles/Profile.css'
 import {UserInfoComponent} from "@/components/profile/UserInfoComponent";
 import {Earth, UserLock, UserRoundCog, UserRoundPen} from "lucide-react";
 import {AccountTabNavEnums} from "@/enums/AccountTabNavEnums";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {UserProfileComponent} from "@/components/profile/UserProfileComponent";
 import {UserSecurityComponent} from "@/components/profile/UserSecurityComponent";
 import {UserSettingsComponent} from "@/components/profile/UserSettingsComponent";
-import {useParams, useSearchParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 export const ProfilePage = () => {
 
 
-    const [currentTab, setCurrentTab] = useState<string>(AccountTabNavEnums.INFO);
-    const [currentForm, setCurrentForm] = useState(<UserProfileComponent/>);
-
     const {tab} = useParams();
-
-
-    useEffect(() => {
-
-        if (tab) {
-            handleSetAccountTab(tab)
-        }
-    }, [tab])
-
+    const [currentTab, setCurrentTab] = useState<string>(tab || AccountTabNavEnums.INFO);
 
     const handleSetAccountTab = (tab: string) => {
         setCurrentTab(tab)
-
-        switch (tab) {
-            case AccountTabNavEnums.INFO:
-                setCurrentForm(<UserProfileComponent/>)
-                break;
-
-            case AccountTabNavEnums.SECURITY:
-                setCurrentForm(<UserSecurityComponent/>)
-                break;
-
-            case AccountTabNavEnums.COUNTRY_TIMEZONE:
-                setCurrentForm(<UserInfoComponent/>)
-                break;
-
-            case AccountTabNavEnums.SETTINGS:
-                setCurrentForm(<UserSettingsComponent/>)
-                break;
-        }
     }
 
     return (
@@ -79,7 +50,10 @@ export const ProfilePage = () => {
 
             <div className="profile-page">
 
-                {currentForm}
+                {currentTab === AccountTabNavEnums.SECURITY && <UserSecurityComponent/>}
+                {currentTab === AccountTabNavEnums.COUNTRY_TIMEZONE && <UserInfoComponent/>}
+                {currentTab === AccountTabNavEnums.SETTINGS && <UserSettingsComponent/>}
+                {currentTab === AccountTabNavEnums.INFO && <UserProfileComponent/>}
             </div>
         </div>
     )

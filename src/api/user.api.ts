@@ -1,5 +1,4 @@
 import api from "./axios";
-import {User} from "@/types/User";
 
 export type UpdateUserInfoPayload = {
     countryId: number;

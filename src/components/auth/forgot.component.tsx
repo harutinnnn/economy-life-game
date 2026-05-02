@@ -11,7 +11,6 @@ export const ForgotComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) 
 
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
-    const [sending, setSending] = useState(false);
 
     const loginSchema = Yup.object({
         email: Yup.string().email("Invalid email").required("Required"),
@@ -22,7 +21,6 @@ export const ForgotComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) 
     };
 
     const handleLoginSubmit = async (values: LoginFormValues) => {
-        setSending(true);
         setError("");
 
         const email = values.email;
@@ -37,14 +35,11 @@ export const ForgotComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) 
                 setSuccess(data?.message)
             }
 
-            setSending(false);
-
         } catch (err) {
 
             console.error(err);
 
             if (err instanceof AxiosError) {
-
                 setError(err.response?.data?.message || "Forgot failed");
             }
         }

@@ -1,5 +1,5 @@
 import './App.css'
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {Header} from "@/components/partial/Header";
 import {MainPage} from "@/pages/main.page";
 import {AuthPage} from "@/pages/auth.page";
@@ -7,8 +7,6 @@ import ActivationCode from "@/pages/ActivationCode";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ProtectedLayout from "@/layouts/ProtectedLayout";
 import AuthLayout from "@/layouts/AuthLayout";
-import {useAuth} from "@/hooks/useAuth";
-import {useEffect} from "react";
 import {ProfilePage} from "@/pages/profile.page";
 
 function App() {

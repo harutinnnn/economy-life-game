@@ -21,6 +21,10 @@ export const UserInfoComponent = () => {
     const [countries, setCountries] = useState<CountryType[]>([]);
     const [timezones, setTimezones] = useState<TimezoneType[]>([]);
 
+    const getTimezonesHandle = async (countryId: number) => {
+        const timezones = await timezonesRequest(countryId);
+        setTimezones(timezones);
+    };
 
     useEffect(() => {
         (async () => {
@@ -33,12 +37,6 @@ export const UserInfoComponent = () => {
 
         })();
     }, [user]);
-
-
-    const getTimezonesHandle = async (countryId: number) => {
-        const timezones = await timezonesRequest(countryId);
-        setTimezones(timezones);
-    };
 
 
     const [error, setError] = useState<string | null>(null);
