@@ -1,23 +1,22 @@
 import {useEffect, useState} from "react";
-import * as Yup from "yup"
-import {SignupFormType} from "@/types/SignupFormType";
-import {registerRequest} from "@/api/auth.api";
+import * as Yup from "yup";
 import {AxiosError} from "axios";
 import {useAuth} from "@/hooks/useAuth";
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {GenderEnum} from "@/enums/GenderEnum";
 import {countriesRequest, timezonesRequest} from "@/api/main.api";
 import {CountryType, TimezoneType} from "@/types/country.type";
 import {UserInfo} from "@/types/user.info.type";
 import {updateUserInfoRequest} from "@/api/user.api";
 import {Alerts} from "@/components/Alerts";
 import {AlertEnums} from "@/enums/AlertEnums";
+import {getAccessToken} from "@/helpers/authStorage";
+import {User} from "@/types/User";
 
 type UserInfoFormValues = Pick<UserInfo, "countryId" | "timezoneId">;
 
 export const UserInfoComponent = () => {
 
-    const {user} = useAuth();
+    const {user, login} = useAuth();
 
     const [countries, setCountries] = useState<CountryType[]>([]);
     const [timezones, setTimezones] = useState<TimezoneType[]>([]);
@@ -25,21 +24,21 @@ export const UserInfoComponent = () => {
 
     useEffect(() => {
         (async () => {
-            const countries = await countriesRequest()
-            setCountries(countries)
+            const countries = await countriesRequest();
+            setCountries(countries);
 
-            if (user?.userInfo.countryId) {
-                void getTimezonesHandle(user?.userInfo.countryId)
+            if (user?.userInfo?.countryId) {
+                void getTimezonesHandle(user?.userInfo.countryId);
             }
 
-        })()
+        })();
     }, [user]);
 
 
     const getTimezonesHandle = async (countryId: number) => {
-        const timezones = await timezonesRequest(countryId)
-        setTimezones(timezones)
-    }
+        const timezones = await timezonesRequest(countryId);
+        setTimezones(timezones);
+    };
 
 
     const [error, setError] = useState<string | null>(null);
@@ -63,18 +62,31 @@ export const UserInfoComponent = () => {
         try {
             const data = await updateUserInfoRequest({
                 countryId: country,
-                timezoneId: timezone
+                timezoneId: timezone,
             });
 
             if ("error" in data) {
                 setError(data.error as string);
             } else {
+                const token = getAccessToken();
+                if (token && user) {
+                    const nextUser: User = {
+                        ...user,
+                        userInfo: {
+                            id: user.userInfo?.id ?? 0,
+                            userId: user.userInfo?.userId ?? user.user.id,
+                            countryId: country,
+                            timezoneId: timezone,
+                        },
+                    };
+                    login(token, nextUser);
+                }
 
-                setSuccess("Successfully registered please check your email!");
+                setSuccess("User info updated successfully!");
 
                 setTimeout(() => {
                     setSuccess(null);
-                }, 5000)
+                }, 5000);
 
             }
             setDisableBtn(false);
@@ -84,7 +96,7 @@ export const UserInfoComponent = () => {
 
             if (err instanceof AxiosError) {
 
-                setError(err.response?.data?.message || "Login failed");
+                setError(err.response?.data?.message || "Update failed");
 
             }
 
@@ -93,21 +105,21 @@ export const UserInfoComponent = () => {
 
 
     return (
-        <div>
+        <div className={""}>
 
-            <h2>User profile</h2>
+            <h2 className={"m-b-2"}>Country and Timezone</h2>
 
             {error && <Alerts text={error} type={AlertEnums.danger} cb={() => {
-                setError(null)
+                setError(null);
             }}/>}
             {success && <Alerts text={success} type={AlertEnums.success} cb={() => {
-                setSuccess(null)
+                setSuccess(null);
             }}/>}
 
             <Formik<UserInfoFormValues>
                 initialValues={{
                     countryId: (user?.userInfo?.countryId || 0),
-                    timezoneId: (user?.userInfo?.timezoneId || 0)
+                    timezoneId: (user?.userInfo?.timezoneId || 0),
                 }}
                 validationSchema={userInfoSchema}
                 onSubmit={handleSubmit}
@@ -121,17 +133,16 @@ export const UserInfoComponent = () => {
                                    onChange={async (e: React.ChangeEvent<HTMLSelectElement>) => {
                                        const value = e.target.value;
 
-                                       await setFieldValue('countryId', value);
-                                       await setFieldValue('timezoneId', 0);
-                                       await getTimezonesHandle(Number(value))
-                                       console.log('Selected:', value); // custom logic
+                                       await setFieldValue("countryId", value);
+                                       await setFieldValue("timezoneId", 0);
+                                       await getTimezonesHandle(Number(value));
                                    }}>
 
                                 <option value="0">Select country</option>
 
                                 {countries.map((country) =>
                                     <option value={country.id}
-                                            key={country.id}>{country.name}</option>
+                                            key={country.id}>{country.name}</option>,
                                 )}
 
                             </Field>
@@ -146,7 +157,7 @@ export const UserInfoComponent = () => {
 
                                 {timezones.map((timezone) =>
                                     <option value={timezone.id}
-                                            key={timezone.id}>{`${timezone.timezoneName} ${timezone.utcOffset}`}</option>
+                                            key={timezone.id}>{`${timezone.timezoneName} ${timezone.utcOffset}`}</option>,
                                 )}
 
                             </Field>
@@ -163,5 +174,5 @@ export const UserInfoComponent = () => {
             </Formik>
 
         </div>
-    )
-}
+    );
+};

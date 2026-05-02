@@ -34,6 +34,7 @@ function App() {
                     }
                 >
                     <Route path="/" element={<MainPage/>}/>
+                    <Route path="/profile/:tab" element={<ProfilePage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
 
 

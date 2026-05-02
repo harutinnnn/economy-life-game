@@ -208,6 +208,13 @@ header .logo {
     margin-top: 30px !important;
 }
 
+.p-t-1{
+    margin-top: 10px !important;
+}
+.p-t-2{
+    margin-top: 20px !important;
+}
+
 .text-notice {
     margin: 10px;
     padding: 10px;

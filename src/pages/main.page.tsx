@@ -10,7 +10,7 @@ export const MainPage = () => {
 
     useEffect(() => {
         if (user && !user?.userInfo) {
-            navigate('/profile');
+            navigate('/profile/country-timezone');
         }
     }, [user]);
 
