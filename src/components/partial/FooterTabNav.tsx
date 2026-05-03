@@ -1,20 +1,29 @@
-import {BriefcaseBusiness, ChartBarBig, Globe, Store, UserRound} from "lucide-react";
+import {BriefcaseBusiness, ChartBarBig, Globe, House, Store, UserRound} from "lucide-react";
 import {useState} from "react";
 import {TabNavEnums} from "@/enums/TabNavEnums";
 import {useNavigate} from "react-router-dom";
 
 export const FooterTabNav = ({activeTabArg}: { activeTabArg: string }) => {
 
-    const [activeTab, setActiveTab] = useState<string>(activeTabArg.length ? activeTabArg : TabNavEnums.WORLD);
+    const [activeTab, setActiveTab] = useState<string>(activeTabArg.length ? activeTabArg : TabNavEnums.HOME);
     const navigate = useNavigate();
 
     return (
         <div className={"footer-tab-nav"}>
 
-            <div className={"tab-nav-item " + (activeTab == TabNavEnums.WORLD ? "active" : "")}
+            <div className={"tab-nav-item " + (activeTab == TabNavEnums.HOME ? "active" : "")}
 
                  onClick={() => {
                      navigate('/')
+                     setActiveTab(TabNavEnums.HOME)
+                 }
+                 }>
+                <House size={32}/>
+            </div>
+            <div className={"tab-nav-item " + (activeTab == TabNavEnums.WORLD ? "active" : "")}
+
+                 onClick={() => {
+                     navigate('/world')
                      setActiveTab(TabNavEnums.WORLD)
                  }
                  }>

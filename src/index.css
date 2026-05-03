@@ -49,8 +49,10 @@
 
     --bos-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
 
+    --deff-radius: 10px;
 
-    --deff-radius: 10px
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-shadow-colored:0 0 #0000;
 }
 
 * {
@@ -153,4 +155,9 @@ select {
 
 .flex-row {
     flex-direction: row;
+}
+
+.color-blue{
+    --tw-text-opacity: 1;
+    color: rgb(0 99 151 / var(--tw-text-opacity, 1));
 }
