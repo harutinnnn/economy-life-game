@@ -3,7 +3,7 @@ import {useAuth} from "@/hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import {Tooltip} from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
-import {BriefcaseBusiness} from "lucide-react";
+import {BriefcaseBusiness, Tractor} from "lucide-react";
 
 type Marker = {
     id: number;
@@ -47,7 +47,44 @@ export const MainPage = () => {
                     <div className="action-item-graph-info">
                         <div className={"graph-info-text"}>15%</div>
                         <div className={"graph-info-graph"}>
-                            <div className="graph-info-graph-progress" style={{width:'15%'}}></div>
+                            <div className="graph-info-graph-progress" style={{width: '15%'}}></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={"action-item shadow-lg color-blue"}>
+                    <div className={'action-item-icon'}>
+                        <BriefcaseBusiness size={28}/>
+                    </div>
+                    <div className={'action-item-text-info'}>
+                        <h3>
+                            Daily Work process
+                        </h3>
+                        <span>Earn $20 at the end of job</span>
+                    </div>
+
+                    <div className="action-item-graph-info">
+                        <div className={"graph-info-text"}>37%</div>
+                        <div className={"graph-info-graph"}>
+                            <div className="graph-info-graph-progress" style={{width: '37%'}}></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={"action-item shadow-lg color-blue"}>
+                    <div className={'action-item-icon'}>
+                        <Tractor size={28}/>
+                    </div>
+                    <div className={'action-item-text-info'}>
+                        <h3>
+                            Farm process
+                        </h3>
+                    </div>
+
+                    <div className="action-item-graph-info">
+                        <div className={"graph-info-text"}>80%</div>
+                        <div className={"graph-info-graph"}>
+                            <div className="graph-info-graph-progress" style={{width: '80%'}}></div>
                         </div>
                     </div>
                 </div>

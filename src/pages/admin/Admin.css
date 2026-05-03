@@ -1,0 +1,136 @@
+.admin-wrap {
+    padding: 10px;
+}
+
+.admin-header {
+    height: 50px;
+    border-bottom: solid 1px var(--neutral-light);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.admin-header h2 {
+    font-size: 18px;
+    color: var(--neutral-normal);
+}
+
+.admin-header .burger-menu {
+    height: 35px;
+    width: 35px;
+    position: relative;
+
+}
+
+.admin-header .burger-menu .burger {
+
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 35px;
+    padding: 6px 4px;
+    border: solid 2px var(--neutral-light);
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: scale .3s;
+
+    &:hover {
+        scale: 1.1;
+    }
+}
+
+.admin-header .burger-menu .burger > div {
+    border-bottom: solid 2px var(--neutral-light);
+}
+
+.admin-nav {
+    position: fixed;
+    top: 0;
+
+    left: -200px;
+    height: 100%;
+    width: 200px;
+    background: var(--neutral-lighter);
+    z-index: 998;
+    transition: all .3s;
+}
+
+.admin-nav.show {
+    left: 0;
+}
+
+.admin-nav ul {
+    padding-top: 50px;
+    list-style-type: none;
+}
+
+.admin-nav ul li a {
+    display: block;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 10px 15px;
+    border-bottom: solid 1px var(--neutral-light);
+    cursor: pointer;
+    transition: all .3s;
+    color: var(--neutral-normal);
+
+    &:hover {
+        background-color: var(--neutral-light);
+        color: var(--white);
+    }
+}
+
+.admin-nav ul li a.active {
+    background-color: var(--neutral-light);
+    color: var(--white);
+    font-weight: bold;
+}
+
+.admin-nav ul li a:first-child {
+    border-top: solid 1px var(--neutral-light);
+}
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    border: solid 1px var(--neutral-light);
+}
+
+.items-list .items-list-item {
+    padding: 10px;
+    border-bottom: solid 1px var(--neutral-light);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+        background-color: var(--yellow-lighter) !important;
+    }
+
+}
+
+.items-list .items-list-item:nth-child(odd) {
+    background-color: var(--neutral-lighter);
+}
+
+.items-list .items-list-item:last-child {
+    border-bottom: unset;
+}
+.items-list .items-list-item .actions{
+    margin-left: auto;
+}
+.items-list .items-list-item .actions svg{
+    transition: scale .3s;
+    color: var(--primary-normal);
+    &:hover{
+        scale: 1.1;
+    }
+}

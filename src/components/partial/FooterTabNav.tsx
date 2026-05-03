@@ -18,7 +18,7 @@ export const FooterTabNav = ({activeTabArg}: { activeTabArg: string }) => {
                      setActiveTab(TabNavEnums.HOME)
                  }
                  }>
-                <House size={32}/>
+                <House size={28}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.WORLD ? "active" : "")}
 
@@ -27,27 +27,29 @@ export const FooterTabNav = ({activeTabArg}: { activeTabArg: string }) => {
                      setActiveTab(TabNavEnums.WORLD)
                  }
                  }>
-                <Globe size={32}/>
+                <Globe size={28}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.STATS ? "active" : "")}
                  onClick={() => setActiveTab(TabNavEnums.STATS)}>
-                <ChartBarBig size={32}/>
+                <ChartBarBig size={28}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.CARRIER ? "active" : "")}
                  onClick={() => setActiveTab(TabNavEnums.CARRIER)}>
-                <BriefcaseBusiness size={32}/>
+                <BriefcaseBusiness size={28}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.MARKET ? "active" : "")}
-                 onClick={() => setActiveTab(TabNavEnums.MARKET)}>
-                <Store size={32}/>
+                 onClick={() => {
+                     navigate('/market')
+                     setActiveTab(TabNavEnums.MARKET)
+                 }}>
+                <Store size={28}/>
             </div>
             <div className={"tab-nav-item " + (activeTab == TabNavEnums.PROFILE ? "active" : "")}
                  onClick={() => {
                      navigate('/profile')
                      setActiveTab(TabNavEnums.PROFILE)
-                 }
-                 }>
-                <UserRound size={32}/>
+                 }}>
+                <UserRound size={28}/>
             </div>
 
         </div>

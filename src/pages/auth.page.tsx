@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {AuthFormTypeEnum} from "@/enums/AuthFormTypeEnum";
 import {useAuth} from "@/hooks/useAuth";
 import {useNavigate} from "react-router-dom";
+import {UserRoles} from "@/enums/UserRoles";
 
 export const AuthPage = () => {
 
@@ -14,7 +15,11 @@ export const AuthPage = () => {
 
     useEffect(() => {
         if (user) {
-            navigate("/");
+            if (user.user.role === UserRoles.SUPERADMIN || user.user.role === UserRoles.ADMIN) {
+                navigate("/admin", {replace: true});
+            } else {
+                navigate("/", {replace: true});
+            }
         }
     }, [user, navigate]);
 

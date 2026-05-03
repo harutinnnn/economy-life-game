@@ -7,6 +7,7 @@ import {getMeRequest, loginRequest} from "@/api/auth.api";
 import {setAuthTokens} from "@/helpers/authStorage";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "@/hooks/useAuth";
+import {UserRoles} from "@/enums/UserRoles";
 
 export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) => {
 
@@ -58,7 +59,11 @@ export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) =
 
                 login(data.token, userToSet);
 
-                navigate("/");
+                if (userToSet.user.role === UserRoles.SUPERADMIN || userToSet.user.role === UserRoles.ADMIN) {
+                    navigate("/admin");
+                } else {
+                    navigate("/");
+                }
 
             }
 

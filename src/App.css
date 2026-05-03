@@ -237,6 +237,7 @@ header .logo {
     }
 }
 
+
 .btn.btn-green {
     background-color: var(--primary-darker);
     color: var(--white);
@@ -257,6 +258,11 @@ header .logo {
     &:hover {
         background-color: var(--secontary-darker);
     }
+}
+
+.btn.sm {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
 }
 
 

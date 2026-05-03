@@ -1,5 +1,6 @@
 import {UserInfo} from "@/types/user.info.type";
 import {UserProgressInfo} from "@/types/user.progress.info.type";
+import {UserRoles} from "@/enums/UserRoles";
 
 export type User = {
     user: {
@@ -10,8 +11,9 @@ export type User = {
         refreshToken: string;
         avatar: string;
         gender: 'male' | 'female' | 'unknown';
-        gameMoney:number;
-        realMoney:number;
+        gameMoney: number;
+        realMoney: number;
+        role: UserRoles;
     },
     userInfo: UserInfo,
     userProgressInfo: UserProgressInfo,
