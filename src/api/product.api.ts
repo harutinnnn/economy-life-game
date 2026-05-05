@@ -5,6 +5,9 @@ import {LoginResponse, RegisterPayload} from "@/api/auth.api";
 export type ProductsResponse = {
     products: ProductType[]
 }
+export type ProductResponse = {
+    product: ProductType
+}
 
 
 export async function productsRequest(): Promise<ProductType[]> {
@@ -34,7 +37,7 @@ export async function productsCategoryRequest(id: number): Promise<ProductCatego
 export async function saveProductCategoryRequest(
     data: FormData
 ): Promise<ProductCategoryType> {
-    const response = await api.post<ProductCategoryType>("/products/edit", data,
+    const response = await api.post<ProductCategoryType>("/products/edit-category", data,
         {
             headers: {"Content-Type": "multipart/form-data"}
         }
@@ -43,6 +46,31 @@ export async function saveProductCategoryRequest(
 }
 
 export async function deleteProductCategoryRequest(
+    id: number
+): Promise<boolean> {
+    const response = await api.delete<boolean>(`/products/delete-category/${id}`);
+    return response.data;
+}
+
+
+export async function productRequest(id: number): Promise<ProductType> {
+    const response = await api.get<ProductResponse>(`/products/product/${id}`);
+    return response.data.product;
+}
+
+export async function saveProductRequest(
+    data: FormData
+): Promise<ProductType> {
+    const response = await api.post<ProductType>("/products/edit", data,
+        {
+            headers: {"Content-Type": "multipart/form-data"}
+        }
+    );
+    return response.data;
+}
+
+
+export async function deleteProductRequest(
     id: number
 ): Promise<boolean> {
     const response = await api.delete<boolean>(`/products/delete/${id}`);

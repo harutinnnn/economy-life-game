@@ -162,6 +162,10 @@ select {
     align-items: center;
 }
 
+.list-item {
+    flex: 1;
+}
+
 .gap-10 {
     gap: 10px;
 }
