@@ -65,9 +65,9 @@ export const AdminProductCategories = () => {
                                     <div>
                                         {product.name}
                                     </div>
-                                    <div>
+                                    <div className={'flex align-items-center'}>
                                         <img src={import.meta.env.VITE_API_URL + product?.icon} alt=""
-                                             style={{width: '50px'}}/>
+                                             style={{width: '50px'}} className={'thumbnail'}/>
                                     </div>
                                 </div>
 

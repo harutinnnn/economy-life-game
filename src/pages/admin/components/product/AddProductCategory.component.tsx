@@ -123,8 +123,8 @@ export const AddProductCategoryComponent = (
                             <ErrorMessage name="icon" component="div" className="error-msg"/>
                         </div>
                         {productCategory?.icon &&
-                            <div className={'data-image thumbnail'}>
-                                <img src={import.meta.env.VITE_API_URL + productCategory?.icon} alt=""/>
+                            <div className={'data-image thumbnail'} >
+                                <img src={import.meta.env.VITE_API_URL + productCategory?.icon} alt="" style={{width: '100px'}} />
                             </div>
                         }
 
