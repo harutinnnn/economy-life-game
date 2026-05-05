@@ -248,6 +248,16 @@ header .logo {
         background-color: var(--primary-normal);
     }
 }
+.btn.btn-danger {
+    background-color: var(--error-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border: solid 1px var(--error-color);
+
+    &:hover {
+        background-color: var(--error-color-1);
+    }
+}
 
 .btn.btn-blue {
     background-color: var(--secontary-normal);
@@ -261,7 +271,7 @@ header .logo {
 }
 
 .btn.sm {
-    padding: 10px 15px !important;
+    padding: 7px 12px !important;
     font-size: 14px !important;
 }
 
@@ -362,4 +372,20 @@ header .logo {
     --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.confirm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--deff-radius);
+}
+
+.confirm-modal .inner-confirm-modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8;
 }
