@@ -13,6 +13,11 @@ export type TimezoneType = {
     utcOffset: string;
 };
 
+export type UsersByCountry = {
+    country: string;
+    value: number;
+};
+
 export type CountriesPayload = {
     email: string;
     password: string;

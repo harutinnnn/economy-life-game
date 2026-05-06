@@ -1,8 +1,8 @@
 header {
-    height: 110px;
+    height: 60px;
     width: 100%;
-    background-color: var(--secontary-darker);
-    color: var(--white);
+    background-color: var(--neutral-lighter);
+    color: var(--neutral-darker);
     z-index: 999;
     position: sticky;
     top: 0;
@@ -20,43 +20,6 @@ header > div.header-container {
 header .logo {
     cursor: pointer;
     height: 40px;
-}
-
-.header-user-info {
-    background-color: var(--neutral-dark);
-    padding: 0 10px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-}
-
-.header-user-info .money-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-}
-
-.header-user-info .money-info img {
-    height: 30px;
-}
-
-.header-user-info .money-info img.add-icon {
-    height: 15px;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: .3s;
-
-    &:hover {
-        scale: 1.2;
-    }
-}
-
-.header-user-info .money-info > span {
-    font-size: 16px;
-    font-weight: bold;
 }
 
 .notifications-info {
@@ -109,10 +72,11 @@ header .logo {
 }
 
 .footer-tab-nav {
-    position: fixed;
+    /*position: fixed;*/
+    position: sticky;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
     width: 100%;
     max-width: 417px;
     height: 60px;

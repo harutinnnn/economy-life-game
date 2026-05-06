@@ -7,4 +7,6 @@ export type SignupFormType = {
     gender: GenderEnum;
     password: string;
     confirmPassword: string;
+    countryId:number,
+    timezoneId:number,
 };

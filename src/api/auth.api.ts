@@ -15,6 +15,8 @@ export type RegisterPayload = {
     email: string;
     gender: string;
     password: string;
+    countryId:number;
+    timezoneId:number;
 };
 
 export type LoginResponse = {

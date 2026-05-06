@@ -1,20 +1,21 @@
 .main-page-wrap {
     position: relative;
     display: flex;
+    min-height: calc(100vh - 100px);
 }
 
-.main-page-wrap:before {
-    content: '';
-    background-image: url("/images/map/map.png");
-    background-position: top center;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: calc(100vh - 110px);
-    z-index: 0;
-    /*filter: blur(1px) grayscale(60%);*/
+.world-map-container {
+    width: calc(100% - 50px);
+    height: 260px;
+    margin: 20px auto 0;
+    border-radius: 15px;
+    overflow: hidden;
+    display: block;
+}
+
+.world-map {
+    /*width: 100%;*/
+    /*height: auto;*/
 }
 
 .current-actions {
@@ -96,3 +97,27 @@
 
 /*End Market*/
 
+
+.map-button-zoom-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 999;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.map-button-zoom {
+    width: 20px;
+    height: 20px;
+    background-color: var(--secontary-lighter);
+    border-radius: 5px;
+    border: solid 1px var(--secontary-normal);
+}
+
+.map-button-zoom.zoom-in,
+.map-button-zoom.zoom-out {
+
+
+}

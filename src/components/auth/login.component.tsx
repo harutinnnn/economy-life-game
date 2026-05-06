@@ -8,12 +8,14 @@ import {setAuthTokens} from "@/helpers/authStorage";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "@/hooks/useAuth";
 import {UserRoles} from "@/enums/UserRoles";
+import {Alerts} from "@/components/Alerts";
+import {AlertEnums} from "@/enums/AlertEnums";
 
 export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) => {
 
     const {login} = useAuth();
 
-    const [, setError] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
     const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) =
 
     const handleLoginSubmit = async (values: LoginFormValues) => {
 
-        setError("");
+        setError(null);
 
         const email = values.email;
         const password = values.password;
@@ -40,7 +42,7 @@ export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) =
             const data = await loginRequest({email, password});
 
             if ("error" in data) {
-                setError(data.error)
+                setError(data.error as string)
             } else {
                 setAuthTokens({
                     accessToken: data.token,
@@ -48,6 +50,7 @@ export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) =
                 });
 
                 let userToSet = data.user;
+
                 try {
                     const userFromApi = await getMeRequest();
                     if (userFromApi) {
@@ -83,6 +86,11 @@ export const LoginComponent = ({cb}: { cb: (type: AuthFormTypeEnum) => void }) =
     return (
         <div>
             <h2 className="title m-b-2">Sign In</h2>
+
+
+            {error && <Alerts text={error} type={AlertEnums.danger} cb={() => {
+                setError(null)
+            }}/>}
 
             <Formik
                 initialValues={{email: "", password: ""}}
