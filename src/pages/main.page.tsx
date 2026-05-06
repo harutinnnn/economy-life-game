@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import 'react-tooltip/dist/react-tooltip.css'
 import WorldMap, {DataItem} from "react-svg-worldmap";
 import {usersByCountry} from "@/api/main.api";
+import {PageLoading} from "@/components/partial/PageLoading";
 
 export const MainPage = () => {
 
@@ -32,8 +33,8 @@ export const MainPage = () => {
     }, [user, navigate]);
 
 
-    if(loading){
-        return <div>Loading...</div>;
+    if (loading) {
+        return <PageLoading/>;
     }
 
     return (
