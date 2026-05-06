@@ -5,13 +5,12 @@ import 'react-tooltip/dist/react-tooltip.css'
 import WorldMap, {DataItem} from "react-svg-worldmap";
 import {usersByCountry} from "@/api/main.api";
 import {PageLoading} from "@/components/partial/PageLoading";
+import {Tractor} from "lucide-react";
+import {MapCountryUsers} from "@/components/MapCountryUsersComponent";
 
 export const MainPage = () => {
 
-
-    const [loading, setLoading] = useState(true);
     const {user} = useAuth();
-    const [mapCountryData, setMapCountryData] = useState<DataItem[]>([]);
 
 
     const navigate = useNavigate();
@@ -23,30 +22,29 @@ export const MainPage = () => {
         }
 
 
-        (async () => {
-            const countryData = await usersByCountry();
-            console.log(countryData);
-            setMapCountryData(countryData)
-            setLoading(false);
-        })()
+    }, [navigate]);
 
-    }, [user, navigate]);
-
-
-    if (loading) {
-        return <PageLoading/>;
-    }
 
     return (
         <div className={"main-page-wrap"}>
 
-            <div className={"world-map-container shadow-lg"}>
-                <div className={"world-map"}>
-                    <WorldMap
-                        color="#004B73"
-                        valueSuffix="Users"
-                        data={mapCountryData}
-                    />
+            <div className={'current-actions'}>
+                <div className={"action-item shadow-lg color-blue"}>
+                    <div className={'action-item-icon'}>
+                        <Tractor size={28}/>
+                    </div>
+                    <div className={'action-item-text-info'}>
+                        <h3>
+                            Farm process
+                        </h3>
+                    </div>
+
+                    <div className="action-item-graph-info">
+                        <div className={"graph-info-text"}>80%</div>
+                        <div className={"graph-info-graph"}>
+                            <div className="graph-info-graph-progress" style={{width: '80%'}}></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
