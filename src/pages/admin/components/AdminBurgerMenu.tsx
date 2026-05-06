@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {getUrlPart} from "@/utils/url.helper";
+import {useAuth} from "@/hooks/useAuth";
 
 export const AdminBurgerMenu = () => {
 
@@ -9,6 +10,7 @@ export const AdminBurgerMenu = () => {
     const pageUrl: string = getUrlPart(location.pathname, 1)
 
     const [showHideMenu, setShowHideMenu] = useState(false);
+    const {logout} = useAuth()
 
     return (
         <div className={'burger-menu'}>
@@ -38,6 +40,9 @@ export const AdminBurgerMenu = () => {
                               className={pageUrl === 'products' ? 'active' : ''}>
                             Products
                         </Link>
+                    </li>
+                    <li>
+                        <a onClick={logout}>Log Out</a>
                     </li>
                 </ul>
             </div>

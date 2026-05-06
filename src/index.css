@@ -95,6 +95,9 @@ body {
     min-height: 100%;
     position: relative;
 }
+.wrapper.admin-wrapper {
+    max-width: 100%;
+}
 
 .nowrap {
     white-space: nowrap;

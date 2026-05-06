@@ -27,7 +27,7 @@ function App() {
 
 
     return (
-        <div className="wrapper">
+        <div className={"wrapper " + (isAdminUser && "admin-wrapper")}>
             {!isAdminRoute && <Header/>}
             <Routes>
 
@@ -61,9 +61,11 @@ function App() {
                 >
                     <Route path="/admin" element={isAdminUser ? <AdminMain/> : <Navigate to="/" replace/>}/>
 
-                    <Route path="/admin/product-categories" element={isAdminUser ? <AdminProductCategories/> : <Navigate to="/" replace/>}/>
+                    <Route path="/admin/product-categories"
+                           element={isAdminUser ? <AdminProductCategories/> : <Navigate to="/" replace/>}/>
 
-                    <Route path="/admin/products" element={isAdminUser ? <AdminProducts/> : <Navigate to="/" replace/>}/>
+                    <Route path="/admin/products"
+                           element={isAdminUser ? <AdminProducts/> : <Navigate to="/" replace/>}/>
                 </Route>
 
 

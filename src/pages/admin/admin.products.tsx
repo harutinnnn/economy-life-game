@@ -75,17 +75,15 @@ export const AdminProducts = () => {
                                             Name: {product.name}
                                         </div>
                                         <div>
-
-                                            Category: {categories.find(cat => cat.id === product.categoryId)?.name || ""}
+                                            {categories.find(cat => cat.id === product.categoryId)?.name || ""}
                                         </div>
                                         <div>
-
                                             price: {product.price}
                                         </div>
                                     </div>
                                     <div className={'flex align-items-center'}>
                                         <img src={import.meta.env.VITE_API_URL + product?.icon} alt=""
-                                             style={{width: '50px'}} className={'thumbnail'}/>
+                                             style={{width: '100px'}} className={'thumbnail'}/>
                                     </div>
                                 </div>
 
