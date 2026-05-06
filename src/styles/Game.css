@@ -31,6 +31,12 @@
     color: var(--white);
 }
 
+.action-item-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
 .current-actions .action-item {
 
     padding: 20px;
@@ -39,11 +45,37 @@
     border-radius: 1rem;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     cursor: pointer;
     margin-bottom: 20px;
+}
+
+.current-actions .action-item .action-item-inner {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.current-actions .action-item.wheat .action-item-icon {
+    background-color: var(--yellow-normal);
+}
+
+.current-actions .action-item.farm .action-item-icon {
+    background-color: var(--primary-light);
+}
+
+.current-actions .action-item.flower .action-item-icon {
+    background-color: var(--error-color);
+    color: var(--white);
+}
+
+.current-actions .action-item.plant .action-item-icon {
+    background-color: var(--primary-lighter);
+    color: var(--neutral-normal);
 }
 
 .current-actions .action-item .action-item-icon {
@@ -63,12 +95,30 @@
     gap: 5px;
 }
 
-.current-actions .action-item .action-item-graph-info {
+.current-actions .action-item .action-item-inner .earnings {
     margin-left: auto;
+    background-color: var(--primary-lighter);
+    padding: 0 10px;
+    border-radius: 15px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+}
+
+.current-actions .action-item .action-item-inner .earnings span {
+    font-weight: bold;
+}
+
+.current-actions .action-item .action-item-graph-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    width: 100%;
+}
+
+.current-actions .action-item .action-item-graph-info .graph-info-text {
+    font-weight: bold;
 }
 
 .current-actions .action-item .action-item-graph-info .graph-info-graph {
@@ -90,6 +140,31 @@
 
 .current-actions .action-item .action-item-text-info span {
     font-size: 14px;
+}
+
+.action-item-2-col .action-item .action-item-inner {
+    flex-direction: column;
+}
+
+.action-item-2-col .action-item .action-item-inner .earnings {
+    margin-left: unset;
+}
+
+.action-item-2-col .action-item.empty-slot {
+    background-color: var(--secontary-lighter);
+    position: relative;
+    border: dashed 2px var(--neutral-light);
+    color: var(--neutral-light);
+}
+
+.action-item-2-col .action-item.empty-slot > div {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
 }
 
 /*Market*/
