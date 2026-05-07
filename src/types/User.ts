@@ -14,6 +14,7 @@ export type User = {
         gameMoney: number;
         realMoney: number;
         role: UserRoles;
+        level:number
     },
     userInfo: UserInfoCountry,
     userProgressInfo: UserProgressInfo,

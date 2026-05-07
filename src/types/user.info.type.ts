@@ -1,3 +1,5 @@
+import {UserGameLocations} from "@/enums/UserGameLocations";
+
 export type UserInfo = {
     id: number;
     userId: number;
@@ -11,4 +13,5 @@ export type UserInfoCountry = {
     timezoneId: number;
     countryCode: string;
     countryName: string;
+    userGameLocation: UserGameLocations
 };

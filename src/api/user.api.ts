@@ -1,8 +1,10 @@
 import api from "./axios";
+import {UserGameLocations} from "@/enums/UserGameLocations";
 
 export type UpdateUserInfoPayload = {
     countryId: number;
     timezoneId: number;
+    userGameLocation:UserGameLocations;
 };
 
 export type UpdateUserInfoResponse = {

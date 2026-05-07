@@ -11,6 +11,8 @@ import {Alerts} from "@/components/Alerts";
 import {AlertEnums} from "@/enums/AlertEnums";
 import {getAccessToken} from "@/helpers/authStorage";
 import {User} from "@/types/User";
+import {UserGameLocations} from "@/enums/UserGameLocations";
+import {capitalize} from "@/helpers/text.helper";
 
 type UserInfoFormValues = Pick<UserInfo, "countryId" | "timezoneId">;
 
@@ -46,6 +48,9 @@ export const UserInfoComponent = () => {
     const userInfoSchema = Yup.object({
         countryId: Yup.number().notOneOf([0], "Country is required").required("Country is required"),
         timezoneId: Yup.number().notOneOf([0], "Timezone is required").required("Timezone is required"),
+        userGameLocation: Yup.string()
+            .oneOf(Object.values(UserGameLocations), "Invalid location")
+            .required("Location is required"),
     });
 
     const handleSubmit = async (values: UserInfoFormValues) => {
@@ -55,19 +60,23 @@ export const UserInfoComponent = () => {
 
         const country = values.countryId;
         const timezone = values.timezoneId;
+        const userGameLocation = values.userGameLocation;
 
 
         try {
             const data = await updateUserInfoRequest({
                 countryId: country,
                 timezoneId: timezone,
+                userGameLocation: userGameLocation,
             });
 
             if ("error" in data) {
                 setError(data.error as string);
             } else {
                 const token = getAccessToken();
+
                 if (token && user) {
+
                     const nextUser: User = {
                         ...user,
                         userInfo: {
@@ -75,6 +84,7 @@ export const UserInfoComponent = () => {
                             userId: user.userInfo?.userId ?? user.user.id,
                             countryId: country,
                             timezoneId: timezone,
+                            userGameLocation: userGameLocation
                         },
                     };
                     login(token, nextUser);
@@ -118,6 +128,7 @@ export const UserInfoComponent = () => {
                 initialValues={{
                     countryId: (user?.userInfo?.countryId || 0),
                     timezoneId: (user?.userInfo?.timezoneId || 0),
+                    userGameLocation: (user?.userInfo?.userGameLocation || UserGameLocations.VILLAGE)
                 }}
                 validationSchema={userInfoSchema}
                 onSubmit={handleSubmit}
@@ -160,6 +171,21 @@ export const UserInfoComponent = () => {
 
                             </Field>
                             <ErrorMessage name="timezoneId" component="div" className="error-msg"/>
+                        </div>
+
+                        <div className="input-row">
+                            <label htmlFor="timezoneId">Timezone</label>
+                            <Field as="select" name="userGameLocation" id="userGameLocation"
+                                   disabled={(user?.user.level >= 10 ? false : true)}>
+
+                                <option value={UserGameLocations.VILLAGE}
+                                        key={UserGameLocations.VILLAGE}>{capitalize(UserGameLocations.VILLAGE)}</option>
+                                <option value={UserGameLocations.CITY}
+                                        key={UserGameLocations.CITY}>{capitalize(UserGameLocations.CITY)}</option>
+
+
+                            </Field>
+                            <ErrorMessage name="userGameLocation" component="div" className="error-msg"/>
                         </div>
 
                         <div className="input-row">
