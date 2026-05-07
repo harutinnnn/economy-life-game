@@ -121,7 +121,7 @@ export const AddProductCategoryComponent = (
                         </div>
                         {productCategory?.icon &&
                             <div className={'data-image thumbnail m-b-2'} >
-                                <img src={import.meta.env.VITE_API_URL + productCategory?.icon} alt="" style={{width: '100px'}} />
+                                <img src={import.meta.env.VITE_API_URL + productCategory?.icon} alt="" style={{width: '200px'}} />
                             </div>
                         }
 

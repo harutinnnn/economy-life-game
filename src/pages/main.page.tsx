@@ -2,11 +2,7 @@ import {useEffect, useState} from "react";
 import {useAuth} from "@/hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import 'react-tooltip/dist/react-tooltip.css'
-import WorldMap, {DataItem} from "react-svg-worldmap";
-import {usersByCountry} from "@/api/main.api";
-import {PageLoading} from "@/components/partial/PageLoading";
 import {CirclePlus, Rose, Sprout, Tractor, Wheat} from "lucide-react";
-import {MapCountryUsers} from "@/components/MapCountryUsersComponent";
 
 export const MainPage = () => {
 

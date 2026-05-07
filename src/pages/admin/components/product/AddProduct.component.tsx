@@ -155,7 +155,7 @@ export const AddProductComponent = (
                         {product?.icon &&
                             <div className={'data-image thumbnail m-b-2'}>
                                 <img src={import.meta.env.VITE_API_URL + product?.icon} alt=""
-                                     style={{width: '100px'}}/>
+                                     style={{width: '200px'}}/>
                             </div>
                         }
 
