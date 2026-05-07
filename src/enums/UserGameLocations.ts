@@ -3,3 +3,4 @@ export enum UserGameLocations {
     CITY = 'city',
 }
 
+export const CITY_AVAILABLE = 10;

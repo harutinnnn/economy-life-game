@@ -20,7 +20,7 @@ export const ProfilePage = () => {
     }
 
     return (
-        <div>
+        <div className={"full-height"}>
 
             <div className={"user-profiles-nav-tab"}>
                 <div
@@ -51,8 +51,8 @@ export const ProfilePage = () => {
             <div className="profile-page">
 
                 {currentTab === AccountTabNavEnums.SECURITY && <UserSecurityComponent/>}
-                {currentTab === AccountTabNavEnums.COUNTRY_TIMEZONE && <UserInfoComponent/>}
                 {currentTab === AccountTabNavEnums.SETTINGS && <UserSettingsComponent/>}
+                {currentTab === AccountTabNavEnums.COUNTRY_TIMEZONE && <UserInfoComponent/>}
                 {currentTab === AccountTabNavEnums.INFO && <UserProfileComponent/>}
             </div>
         </div>

@@ -46,7 +46,7 @@ export const WorldPage = () => {
     }
 
     return (
-        <div>
+        <div className={'full-height'}>
             <div className={"map-wrap"}>
                 <img src="/images/map/map.png" className="map-img" alt="Game map"/>
                 {markers.map((marker) => (

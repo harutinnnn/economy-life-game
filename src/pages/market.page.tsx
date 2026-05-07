@@ -19,7 +19,7 @@ export const MarketPage = () => {
     return (
         <div className={"market-page-wrap"}>
 
-            <div className="market-wrap">
+            <div className="market-wrap full-height">
 
                 <h2>Market</h2>
 

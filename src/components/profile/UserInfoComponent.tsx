@@ -5,16 +5,19 @@ import {useAuth} from "@/hooks/useAuth";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {countriesRequest, timezonesRequest} from "@/api/main.api";
 import {CountryType, TimezoneType} from "@/types/country.type";
-import {UserInfo} from "@/types/user.info.type";
 import {updateUserInfoRequest} from "@/api/user.api";
 import {Alerts} from "@/components/Alerts";
 import {AlertEnums} from "@/enums/AlertEnums";
 import {getAccessToken} from "@/helpers/authStorage";
 import {User} from "@/types/User";
-import {UserGameLocations} from "@/enums/UserGameLocations";
+import {CITY_AVAILABLE, UserGameLocations} from "@/enums/UserGameLocations";
 import {capitalize} from "@/helpers/text.helper";
 
-type UserInfoFormValues = Pick<UserInfo, "countryId" | "timezoneId">;
+type UserInfoFormValues = {
+    countryId: number;
+    timezoneId: number;
+    userGameLocation: UserGameLocations;
+};
 
 export const UserInfoComponent = () => {
 
@@ -48,7 +51,7 @@ export const UserInfoComponent = () => {
     const userInfoSchema = Yup.object({
         countryId: Yup.number().notOneOf([0], "Country is required").required("Country is required"),
         timezoneId: Yup.number().notOneOf([0], "Timezone is required").required("Timezone is required"),
-        userGameLocation: Yup.string()
+        userGameLocation: Yup.mixed<UserGameLocations>()
             .oneOf(Object.values(UserGameLocations), "Invalid location")
             .required("Location is required"),
     });
@@ -80,6 +83,7 @@ export const UserInfoComponent = () => {
                     const nextUser: User = {
                         ...user,
                         userInfo: {
+                            ...user.userInfo,
                             id: user.userInfo?.id ?? 0,
                             userId: user.userInfo?.userId ?? user.user.id,
                             countryId: country,
@@ -174,9 +178,9 @@ export const UserInfoComponent = () => {
                         </div>
 
                         <div className="input-row">
-                            <label htmlFor="timezoneId">Timezone</label>
+                            <label htmlFor="userGameLocation">Game Location</label>
                             <Field as="select" name="userGameLocation" id="userGameLocation"
-                                   disabled={(user?.user.level >= 10 ? false : true)}>
+                                   disabled={(Number(user?.user.level) < CITY_AVAILABLE)}>
 
                                 <option value={UserGameLocations.VILLAGE}
                                         key={UserGameLocations.VILLAGE}>{capitalize(UserGameLocations.VILLAGE)}</option>

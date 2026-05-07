@@ -47,6 +47,7 @@
 
     --error-color: #cb1234;
     --error-color-1: #e3183e;
+    --error-color-2: #e36f84;
 
     --bos-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
 
@@ -215,4 +216,8 @@ select {
     transform: translate(-50%, -50%);
     color: var(--white);
     font-size: 18px;
+}
+
+.full-height{
+    min-height: calc(100vh - 120px);
 }

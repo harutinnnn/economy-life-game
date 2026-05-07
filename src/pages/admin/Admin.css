@@ -115,6 +115,7 @@
     flex-direction: row;
     cursor: pointer;
     font-size: 14px;
+    background-color: var(--yellow-lighter);
 
     &:hover {
         background-color: var(--yellow-lighter) !important;
