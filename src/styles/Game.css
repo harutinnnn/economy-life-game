@@ -52,6 +52,21 @@
     margin-bottom: 20px;
 }
 
+.current-actions .action-item.disabled {
+    opacity: 0.3;
+    position: relative;
+    cursor: no-drop;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+}
+
 .current-actions .action-item .action-item-inner {
     display: flex;
     flex-direction: row;
@@ -165,6 +180,95 @@
     top: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
+}
+
+.action-item .action-item-fields {
+    transition: all .5s ease-in-out;
+    width: 100%;
+}
+
+.action-item .action-item-fields .action-item-fields-inner {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.action-item .action-item-fields.show {
+}
+
+.action-item .action-item-fields .add-new-field,
+.action-item .action-item-fields .action-item-field-item {
+    background-color: var(--secontary-lighter);
+    border-radius: 10px;
+    padding: 10px;
+    height: 160px;
+}
+
+.action-item .action-item-fields .action-item-field-item .action-item-field-item-img {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.action-item .action-item-fields .action-item-field-item .action-item-field-item-img img {
+    height: 100%;
+    width: 100%;
+}
+
+.action-item .action-item-fields .add-new-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s;
+
+    &:hover {
+        background-color: var(--primary-lighter);
+    }
+}
+
+.action-item .action-item-fields .add-new-field > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-item .fields-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: var(--neutral-lighter);
+}
+
+.action-item .fields-toggle svg {
+    animation: rotate180revert .5s ease-in-out forwards;
+}
+
+.action-item .fields-toggle.toggled svg {
+    animation: rotate180 .5s ease-in-out forwards;
+}
+
+@keyframes rotate180 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotate180revert {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
 }
 
 /*Market*/

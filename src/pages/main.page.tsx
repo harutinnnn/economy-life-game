@@ -3,6 +3,7 @@ import {useAuth} from "@/hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import 'react-tooltip/dist/react-tooltip.css'
 import {CirclePlus, Rose, Sprout, Tractor, Wheat} from "lucide-react";
+import {WheatComponent} from "@/components/game-components/WheatComponent";
 
 export const MainPage = () => {
 
@@ -26,7 +27,9 @@ export const MainPage = () => {
 
             <div className={'current-actions'}>
 
-                <div className={"action-item shadow-lg color-blue farm"}>
+                <WheatComponent/>
+
+                <div className={"action-item shadow-lg color-blue farm disabled"}>
                     <div className={"action-item-inner"}>
                         <div className={'action-item-icon'}>
                             <Tractor size={28}/>
@@ -49,32 +52,9 @@ export const MainPage = () => {
                     </div>
                 </div>
 
-                <div className={"action-item shadow-lg color-blue wheat"}>
-                    <div className={"action-item-inner"}>
-                        <div className={'action-item-icon'}>
-                            <Wheat size={28}/>
-                        </div>
-                        <div className={'action-item-text-info'}>
-                            <h3>
-                                Wheat germination
-                            </h3>
-                        </div>
-                        <div className={'earnings'}>
-                            Earnings <span>🪙5</span>
-                        </div>
-
-                    </div>
-                    <div className={"action-item-graph-info"}>
-                        <div className={"graph-info-graph"}>
-                            <div className="graph-info-graph-progress" style={{width: '55%'}}></div>
-                        </div>
-                        <div className={"graph-info-text"}>55% Completed</div>
-                    </div>
-                </div>
-
                 <div className={"action-item-2-col"}>
 
-                    <div className={"action-item shadow-lg color-blue plant"}>
+                    <div className={"action-item shadow-lg color-blue plant disabled"}>
                         <div className={"action-item-inner"}>
                             <div className={'action-item-icon'}>
                                 <Sprout size={28}/>
@@ -98,7 +78,7 @@ export const MainPage = () => {
                         </div>
                     </div>
 
-                    <div className={"action-item shadow-lg color-blue flower"}>
+                    <div className={"action-item shadow-lg color-blue flower disabled"}>
                         <div className={"action-item-inner"}>
                             <div className={'action-item-icon'}>
                                 <Rose size={28}/>
@@ -127,7 +107,7 @@ export const MainPage = () => {
 
                 <div className={"action-item-2-col"}>
 
-                    <div className={"action-item shadow-lg color-blue farm"}>
+                    <div className={"action-item shadow-lg color-blue farm disabled"}>
                         <div className={"action-item-inner"}>
                             <div className={'action-item-icon'}>
                                 <Tractor size={28}/>
