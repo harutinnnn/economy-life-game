@@ -18,6 +18,7 @@ import {useAuth} from "@/hooks/useAuth";
 import {UserRoles} from "@/enums/UserRoles";
 import {AdminProductCategories} from "@/pages/admin/admin.product.categories";
 import {AdminProducts} from "@/pages/admin/admin.products";
+import {Toaster} from "react-hot-toast";
 
 function App() {
     const {user} = useAuth();
@@ -70,6 +71,10 @@ function App() {
 
 
             </Routes>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
 
 
         </div>

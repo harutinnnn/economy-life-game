@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "@/hooks/useAuth";
+import {userUpToNextLvlByPercent} from "@/helpers/userHelper";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -17,6 +18,9 @@ export const Header = () => {
                 <div className="auth-actions">
                     {user &&
                         <>
+                            <div className={"user-level-info"}>
+                                LVL {user.user.level}
+                            </div>
                             <div className={"notifications-info"}>
                                 <img src="/images/icons/notification.png" alt=""/>
                                 <div className="badge">2</div>
@@ -26,6 +30,12 @@ export const Header = () => {
                                  onClick={() => logout()}/>
                         </>
                     }
+                </div>
+            </div>
+            <div className={'user-experience-progress'}>
+                <div className="user-experience-progress-bar"
+                     style={{width: (userUpToNextLvlByPercent(Number(user?.user.level), Number(user?.user.xp))) + '%'}}>
+                    <span>{(userUpToNextLvlByPercent(Number(user?.user.level), Number(user?.user.xp))) + '%'}</span>
                 </div>
             </div>
 

@@ -4,6 +4,8 @@ export type FieldType = {
     id: number;
     title: string;
     type: FieldTypeEnum;
-    status: number,
-    remaining: number;
+    status: string,
+    startProgressTime:Date | string;
+    endProgressTime:Date | string;
+    durationBySeconds: number;
 }

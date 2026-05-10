@@ -1,11 +1,44 @@
 header {
-    height: 60px;
+    height: 65px;
     width: 100%;
     background-color: var(--neutral-lighter);
     color: var(--neutral-darker);
     z-index: 999;
     position: sticky;
     top: 0;
+}
+
+header .user-experience-progress {
+    height: auto;
+    background-color: var(--neutral-darker);
+    width: 100%;
+}
+
+header .user-experience-progress .user-experience-progress-bar {
+    background-color: var(--yellow-normal);
+    height: 5px;
+    transition: 0.3s;
+    position: relative;
+}
+
+header .user-experience-progress .user-experience-progress-bar span {
+    display: none;
+    color: var(--primary-lighter);
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 10px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header .user-experience-progress:hover .user-experience-progress-bar {
+    height: 25px;
+}
+
+header .user-experience-progress:hover .user-experience-progress-bar span {
+    display: block;
 }
 
 header > div.header-container {
@@ -20,6 +53,15 @@ header > div.header-container {
 header .logo {
     cursor: pointer;
     height: 40px;
+}
+
+.user-level-info {
+    font-weight: bold;
+    padding: 3px 10px;
+    font-size: 14px;
+    background-color: var(--neutral-light);
+    color: var(--white);
+    border-radius: 15px;
 }
 
 .notifications-info {
@@ -212,6 +254,7 @@ header .logo {
         background-color: var(--primary-normal);
     }
 }
+
 .btn.btn-danger {
     background-color: var(--error-color);
     color: var(--white);
