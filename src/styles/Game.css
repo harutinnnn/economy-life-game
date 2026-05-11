@@ -303,3 +303,29 @@
 
 
 }
+
+
+.market-products-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 10px;
+}
+
+.market-products-list .product-item {
+
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.market-products-list .product-item img {
+    width: 100%;
+    transition: .3s;
+
+}
+
+.market-products-list .product-item:hover img {
+    scale: 1.3;
+}

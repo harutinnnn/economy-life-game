@@ -12,6 +12,11 @@ export type ProductCategoryType = {
     icon?: string,
 }
 
+export type ProductCategoryGroupType = {
+    products: ProductType,
+    productsCategories: ProductCategoryType,
+}
+
 export type ProductCategoryFileType = {
     name: string,
     icon: File | null,

@@ -1,10 +1,8 @@
-import {parse} from "vite";
-
 export const countDown = (startDate: string, endDate: string) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
 
-    const diffMs = end - start;
+    const diffMs = end.getTime() - start.getTime();
 
     if (diffMs <= 0) {
         return "Time is up!";
@@ -24,8 +22,8 @@ export const countDown = (startDate: string, endDate: string) => {
 }
 
 export const startCountdown = (endDateString: string): string => {
-    const now = new Date();
-    const endDate = new Date(endDateString);
+    const now = Date.now();
+    const endDate = new Date(endDateString).getTime();
 
     const diff = endDate - now;
 
@@ -52,5 +50,5 @@ export const getDateProgress = (startDate: string, endDate: string) => {
     if (now <= start) return 0;
     if (now >= end) return 100;
 
-    return parseInt(((now - start) / (end - start)) * 100);
+    return Math.trunc(((now - start) / (end - start)) * 100);
 }

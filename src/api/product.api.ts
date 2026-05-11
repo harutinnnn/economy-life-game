@@ -1,5 +1,5 @@
 import api from "./axios";
-import {ProductCategoryType, ProductType} from "@/types/product.type";
+import {ProductCategoryGroupType, ProductCategoryType, ProductType} from "@/types/product.type";
 import {LoginResponse, RegisterPayload} from "@/api/auth.api";
 
 export type ProductsResponse = {
@@ -8,10 +8,17 @@ export type ProductsResponse = {
 export type ProductResponse = {
     product: ProductType
 }
+export type ProductsCategoryGroupResponse = {
+    products: ProductCategoryGroupType[]
+}
 
 
 export async function productsRequest(): Promise<ProductType[]> {
     const response = await api.get<ProductsResponse>("/products");
+    return response.data.products;
+}
+export async function productsGroupByRequest(): Promise<ProductCategoryGroupType[]> {
+    const response = await api.get<ProductsCategoryGroupResponse>("/products/goup-by");
     return response.data.products;
 }
 
