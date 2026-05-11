@@ -22,3 +22,8 @@ export async function seedField(data: SeedFieldPayload): Promise<FieldsList | Er
     const response = await api.post<FieldsList>("/fields/seed-field", data);
     return response.data;
 }
+
+export async function collectField(id: number): Promise<FieldType | ErrorResponse> {
+    const response = await api.get<FieldType>(`/fields/collect-field/${id}`);
+    return response.data;
+}

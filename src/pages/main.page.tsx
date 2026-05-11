@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useAuth} from "@/hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import 'react-tooltip/dist/react-tooltip.css'
-import {CirclePlus, Rose, Sprout, Tractor, Wheat} from "lucide-react";
+import {CirclePlus, Rose, Sprout, Tractor} from "lucide-react";
 import {WheatComponent} from "@/components/game-components/WheatComponent";
 
 export const MainPage = () => {

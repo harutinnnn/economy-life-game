@@ -13,21 +13,24 @@ export const WheatComponent = () => {
 
     const [fields, setFields] = useState<FieldType[]>([]);
 
+    const getFields = async () => {
+        const fieldsList = await updateUserInfoRequest()
+        setFields(fieldsList.fields)
+    }
+
     useEffect(() => {
         if (contentRef.current) {
             setHeight(contentRef.current.scrollHeight);
         }
 
         (async () => {
-            const fieldsList = await updateUserInfoRequest()
-            setFields(fieldsList.fields)
+            await getFields()
         })()
 
     }, [toggleFields, setFields])
 
 
     const handleAddField = (type: FieldTypeEnum) => {
-
 
         //TODO add adding field api request
 
@@ -72,7 +75,7 @@ export const WheatComponent = () => {
 
                 <div className={"action-item-fields-inner"} ref={contentRef}>
                     {fields.map((field: FieldType) =>
-                        <FieldComponent field={field} key={field.id}/>
+                        <FieldComponent field={field} key={field.id} cb={() => getFields()}/>
                     )}
                     <div className="add-new-field">
                         <div onClick={() => {
@@ -91,4 +94,4 @@ export const WheatComponent = () => {
             </div>
         </div>
     )
-}
+};

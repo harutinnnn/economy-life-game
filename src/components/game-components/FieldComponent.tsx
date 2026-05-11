@@ -1,12 +1,12 @@
 import {FieldType} from "@/types/FieldType";
 import toast from 'react-hot-toast';
-import {seedField} from "@/api/fields.api";
+import {collectField, seedField} from "@/api/fields.api";
 import {FieldTypeEnum} from "@/enums/FieldTypesEnum";
 import {useEffect, useState} from "react";
-import {countDown, getDateProgress, startCountdown} from "@/helpers/dateHelper";
+import {getDateProgress, startCountdown} from "@/helpers/dateHelper";
 import {FieldStatusesEnum} from "@/enums/FieldStatusesEnum";
 
-export const FieldComponent = ({field}: { field: FieldType }) => {
+export const FieldComponent = ({field, cb}: { field: FieldType, cb: () => void }) => {
 
     // const notify = (text:string) => toast.success(text);
     const notify = (text: string) => toast.error(text);
@@ -14,22 +14,37 @@ export const FieldComponent = ({field}: { field: FieldType }) => {
 
     const [countdownStr, setCountdownStr] = useState<string>("");
     const [progress, setProgress] = useState<number>(0);
-    const [wheatProgressImage, setWheatProgressImage] = useState<number>(0);
 
     const seedWheat = async (fieldId: number) => {
 
+        if (field.status === FieldStatusesEnum.EMPTY) {
 
-        const data = await seedField({
-            fieldId: fieldId,
-            seedType: FieldTypeEnum.WHEAT
-        })
+            const data = await seedField({
+                fieldId: fieldId,
+                seedType: FieldTypeEnum.WHEAT
+            })
 
-        if ("error" in data) {
-            notify(data.error.toString());
+            if ("error" in data) {
+                notify(data.error.toString());
+            } else {
+                cb()
+                notifySuccess("Successfully seed field");
+            }
         } else {
-            notifySuccess("Successfully seed field");
+            const data = await collectField(fieldId)
+
+            if ("error" in data) {
+                notify(data.error.toString());
+            } else {
+                cb()
+                notifySuccess("Successfully wheat collected");
+            }
         }
     }
+
+    useEffect(() => {
+
+    }, [field]);
 
     const wheatProgressImageHandle = () => {
         if (field.status == FieldStatusesEnum.IN_PROGRESS) {
@@ -55,6 +70,7 @@ export const FieldComponent = ({field}: { field: FieldType }) => {
 
         return () => clearInterval(interval);
     }, [field]);
+
 
     return (
         <div className={"action-item-field-item " + field.type} onClick={() => seedWheat(field.id)}>
