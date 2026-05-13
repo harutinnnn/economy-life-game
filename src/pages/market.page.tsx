@@ -2,8 +2,9 @@ import {useEffect, useState} from "react";
 import {useAuth} from "@/hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import 'react-tooltip/dist/react-tooltip.css'
-import {productsGroupByRequest, productsRequest} from "@/api/product.api";
+import {buyProductRequest, productsGroupByRequest, productsRequest} from "@/api/product.api";
 import {ProductCategoryGroupType, ProductType} from "@/types/product.type";
+import toast from "react-hot-toast";
 
 export const MarketPage = () => {
 
@@ -32,8 +33,14 @@ export const MarketPage = () => {
         setProducts(data);
     }
 
-    const buyProductHandle = async (id: number) => {
-        alert(id)
+    const buyProductHandle = async (product: ProductType) => {
+        if (Number(user?.user?.gameMoney) >= product.price) {
+
+            const data = await buyProductRequest(Number(product.id))
+
+        } else {
+            toast.error("Not enough money!")
+        }
 
     }
 
@@ -62,7 +69,7 @@ export const MarketPage = () => {
                                 </div>
                                 <div>
                                     <button className={"btn btn-blue sm w-100"}
-                                            onClick={() => buyProductHandle(Number(prod.products.id))}>Buy
+                                            onClick={() => buyProductHandle(prod.products)}>Buy
                                     </button>
                                 </div>
                             </div>

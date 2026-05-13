@@ -8,6 +8,8 @@ import * as Yup from "yup";
 import {AxiosError} from "axios";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {Loader} from "lucide-react";
+import {ProductTypesEnum} from "@/enums/ProductTypesEnum";
+import {GenderEnum} from "@/enums/GenderEnum";
 
 export const AddProductComponent = (
     {id, cb, categories}: { id: number, cb: () => void, categories: ProductCategoryType[] },
@@ -23,7 +25,7 @@ export const AddProductComponent = (
 
             if (id > 0) {
                 const product = await productRequest(id);
-                console.log('product',product);
+                console.log('product', product);
                 setProduct(product);
             }
             setLoading(false);
@@ -44,6 +46,9 @@ export const AddProductComponent = (
         name: Yup.string().required("Name is required"),
         price: Yup.number().required("Number is required"),
         categoryId: Yup.number().required("Category is required"),
+        productType: Yup.mixed<ProductTypesEnum>()
+            .oneOf(Object.values(ProductTypesEnum), "Invalid gender")
+            .required("Gender is required"),
     });
 
     const handleSubmit = async (values: ProductFileType) => {
@@ -55,12 +60,14 @@ export const AddProductComponent = (
         const name = values.name;
         const price = values.price;
         const categoryId = values.categoryId;
+        const productType = values.productType;
 
         const formData = new FormData();
         formData.append('id', id.toString())
         formData.append("name", name);
         formData.append("price", price.toString());
         formData.append("categoryId", categoryId.toString());
+        formData.append("productType", productType.toString());
         if (values.icon) {
             formData.append("icon", values.icon);
         }
@@ -105,6 +112,7 @@ export const AddProductComponent = (
                 initialValues={{
                     name: product?.name || "",
                     categoryId: product?.categoryId || 0,
+                    productType: product?.productType || ProductTypesEnum.SEED,
                     price: product?.price || 0,
                     icon: null
                 }}
@@ -125,6 +133,23 @@ export const AddProductComponent = (
                                 )}
                             </Field>
                             <ErrorMessage name="categoryId" component="div" className="error-msg"/>
+                        </div>
+
+
+                        <div className="input-row">
+                            <label htmlFor="name">Product Type</label>
+                            <Field as="select" name="productType" id="productType">
+                                {Object.values(ProductTypesEnum).map((type) => (
+                                    <option
+                                        value={type}
+                                        key={type}>{type}
+                                    </option>
+
+                                ))}
+
+
+                            </Field>
+                            <ErrorMessage name="productType" component="div" className="error-msg"/>
                         </div>
 
                         <div className="input-row">

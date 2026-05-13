@@ -12,14 +12,24 @@ export type ProductsCategoryGroupResponse = {
     products: ProductCategoryGroupType[]
 }
 
+export type ProductsByGroupResponse = {
+    product: ProductCategoryGroupType
+}
+
 
 export async function productsRequest(): Promise<ProductType[]> {
     const response = await api.get<ProductsResponse>("/products");
     return response.data.products;
 }
+
 export async function productsGroupByRequest(): Promise<ProductCategoryGroupType[]> {
     const response = await api.get<ProductsCategoryGroupResponse>("/products/goup-by");
     return response.data.products;
+}
+
+export async function buyProductRequest(id: number): Promise<ProductCategoryGroupType> {
+    const response = await api.post<ProductsByGroupResponse>(`/products/buy-product/${id}`);
+    return response.data.product;
 }
 
 
