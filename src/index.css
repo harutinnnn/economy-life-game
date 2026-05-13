@@ -221,3 +221,6 @@ select {
 .full-height{
     min-height: calc(100vh - 120px);
 }
+.w-100{
+    width: 100%;
+}

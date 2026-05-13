@@ -32,6 +32,11 @@ export const MarketPage = () => {
         setProducts(data);
     }
 
+    const buyProductHandle = async (id: number) => {
+        alert(id)
+
+    }
+
 
     return (
         <div className={"market-page-wrap"}>
@@ -48,8 +53,18 @@ export const MarketPage = () => {
                             <div className={"product-item"} key={prod.products.id}>
                                 <h6>{prod.productsCategories.name}</h6>
                                 <h4>{prod.products.name}</h4>
-                                <img src={import.meta.env.VITE_API_URL + prod.products.icon} alt=""/>
-                                <div>Price: {prod.products.price}</div>
+                                <img src={import.meta.env.VITE_API_URL + prod.products.icon} alt=""
+                                     className={'product-item-img'}/>
+                                <div className={"product-item"}>
+                                    Price:
+                                    <img src="/public/images/icons/coin-icon.png" className={"coin-price"} alt=""/>
+                                    {prod.products.price}
+                                </div>
+                                <div>
+                                    <button className={"btn btn-blue sm w-100"}
+                                            onClick={() => buyProductHandle(Number(prod.products.id))}>Buy
+                                    </button>
+                                </div>
                             </div>
                         )
                     })}
